@@ -1,0 +1,351 @@
+mysql> select * from join_1;
++------+---------+
+| id   | name    |
++------+---------+
+|    1 | Venkat  |
+|    2 | Maddy   |
+|    3 | Suguram |
+|    4 | Haiden  |
+|    5 | Aswath  |
++------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from join_2;
++------+----------------+
+| id   | name           |
++------+----------------+
+|    1 | Annamalai      |
+|    2 | Ulga paithiyam |
++------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into join_2 values(3, "Chiitapa"),(4, "Haiden"),(5, "Aswath");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from join_2;
++------+----------------+
+| id   | name           |
++------+----------------+
+|    1 | Annamalai      |
+|    2 | Ulga paithiyam |
+|    3 | Chiitapa       |
+|    4 | Haiden         |
+|    5 | Aswath         |
++------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from join_1 inner join join_2;
++------+---------+------+----------------+
+| id   | name    | id   | name           |
++------+---------+------+----------------+
+|    5 | Aswath  |    1 | Annamalai      |
+|    4 | Haiden  |    1 | Annamalai      |
+|    3 | Suguram |    1 | Annamalai      |
+|    2 | Maddy   |    1 | Annamalai      |
+|    1 | Venkat  |    1 | Annamalai      |
+|    5 | Aswath  |    2 | Ulga paithiyam |
+|    4 | Haiden  |    2 | Ulga paithiyam |
+|    3 | Suguram |    2 | Ulga paithiyam |
+|    2 | Maddy   |    2 | Ulga paithiyam |
+|    1 | Venkat  |    2 | Ulga paithiyam |
+|    5 | Aswath  |    3 | Chiitapa       |
+|    4 | Haiden  |    3 | Chiitapa       |
+|    3 | Suguram |    3 | Chiitapa       |
+|    2 | Maddy   |    3 | Chiitapa       |
+|    1 | Venkat  |    3 | Chiitapa       |
+|    5 | Aswath  |    4 | Haiden         |
+|    4 | Haiden  |    4 | Haiden         |
+|    3 | Suguram |    4 | Haiden         |
+|    2 | Maddy   |    4 | Haiden         |
+|    1 | Venkat  |    4 | Haiden         |
+|    5 | Aswath  |    5 | Aswath         |
+|    4 | Haiden  |    5 | Aswath         |
+|    3 | Suguram |    5 | Aswath         |
+|    2 | Maddy   |    5 | Aswath         |
+|    1 | Venkat  |    5 | Aswath         |
++------+---------+------+----------------+
+25 rows in set (0.00 sec)
+
+mysql> select * from join_1 cross join join_2;
++------+---------+------+----------------+
+| id   | name    | id   | name           |
++------+---------+------+----------------+
+|    5 | Aswath  |    1 | Annamalai      |
+|    4 | Haiden  |    1 | Annamalai      |
+|    3 | Suguram |    1 | Annamalai      |
+|    2 | Maddy   |    1 | Annamalai      |
+|    1 | Venkat  |    1 | Annamalai      |
+|    5 | Aswath  |    2 | Ulga paithiyam |
+|    4 | Haiden  |    2 | Ulga paithiyam |
+|    3 | Suguram |    2 | Ulga paithiyam |
+|    2 | Maddy   |    2 | Ulga paithiyam |
+|    1 | Venkat  |    2 | Ulga paithiyam |
+|    5 | Aswath  |    3 | Chiitapa       |
+|    4 | Haiden  |    3 | Chiitapa       |
+|    3 | Suguram |    3 | Chiitapa       |
+|    2 | Maddy   |    3 | Chiitapa       |
+|    1 | Venkat  |    3 | Chiitapa       |
+|    5 | Aswath  |    4 | Haiden         |
+|    4 | Haiden  |    4 | Haiden         |
+|    3 | Suguram |    4 | Haiden         |
+|    2 | Maddy   |    4 | Haiden         |
+|    1 | Venkat  |    4 | Haiden         |
+|    5 | Aswath  |    5 | Aswath         |
+|    4 | Haiden  |    5 | Aswath         |
+|    3 | Suguram |    5 | Aswath         |
+|    2 | Maddy   |    5 | Aswath         |
+|    1 | Venkat  |    5 | Aswath         |
++------+---------+------+----------------+
+25 rows in set (0.00 sec)
+
+mysql> select * from join_1 inner join join_2 on join_1.name = join_2.name;
++------+--------+------+--------+
+| id   | name   | id   | name   |
++------+--------+------+--------+
+|    4 | Haiden |    4 | Haiden |
+|    5 | Aswath |    5 | Aswath |
++------+--------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> alter table join_1 modify name vaechar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vaechar(20)' at line 1
+mysql> alter table join_1 modify name varchar(20);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from join_1 inner join join_2 on join_1.name = join_2.name;
++------+--------+------+--------+
+| id   | name   | id   | name   |
++------+--------+------+--------+
+|    4 | Haiden |    4 | Haiden |
+|    5 | Aswath |    5 | Aswath |
++------+--------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from join_2;
++------+----------------+
+| id   | name           |
++------+----------------+
+|    1 | Annamalai      |
+|    2 | Ulga paithiyam |
+|    3 | Chiitapa       |
+|    4 | Haiden         |
+|    5 | Aswath         |
++------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from join_1 inner join join_2 on join_1.name = join_2.name;
++------+--------+------+--------+
+| id   | name   | id   | name   |
++------+--------+------+--------+
+|    4 | Haiden |    4 | Haiden |
+|    5 | Aswath |    5 | Aswath |
++------+--------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from join_1 inner join join_2 on join_1.name = join_2.name;
++------+--------+------+--------+
+| id   | name   | id   | name   |
++------+--------+------+--------+
+|    4 | Haiden |    4 | Haiden |
+|    5 | Aswath |    5 | Aswath |
++------+--------+------+--------+
+2 rows in set (0.01 sec)
+
+mysql> select * from join_1 left join join_2 on join_1.name = join_2.name;
++------+---------+------+--------+
+| id   | name    | id   | name   |
++------+---------+------+--------+
+|    1 | Venkat  | NULL | NULL   |
+|    2 | Maddy   | NULL | NULL   |
+|    3 | Suguram | NULL | NULL   |
+|    4 | Haiden  |    4 | Haiden |
+|    5 | Aswath  |    5 | Aswath |
++------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from join_1 right join join_2 on join_1.name = join_2.name;
++------+--------+------+----------------+
+| id   | name   | id   | name           |
++------+--------+------+----------------+
+| NULL | NULL   |    1 | Annamalai      |
+| NULL | NULL   |    2 | Ulga paithiyam |
+| NULL | NULL   |    3 | Chiitapa       |
+|    4 | Haiden |    4 | Haiden         |
+|    5 | Aswath |    5 | Aswath         |
++------+--------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from join_1 left join join_2 on join_1.name = join_2.name where join_2 is null;
+ERROR 1054 (42S22): Unknown column 'join_2' in 'where clause'
+mysql> select * from join_1 left join join_2 on join_1.name = join_2.name where join_2 null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'null' at line 1
+mysql> select * from join_1 left join join_2 on join_1.name = join_2.name where join_2.name is null;
++------+---------+------+------+
+| id   | name    | id   | name |
++------+---------+------+------+
+|    1 | Venkat  | NULL | NULL |
+|    2 | Maddy   | NULL | NULL |
+|    3 | Suguram | NULL | NULL |
++------+---------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from join_1 right join join_2 on join_1.name = join_2.name where join_2.name is null;
+Empty set (0.00 sec)
+
+mysql> select * from join_1 right join join_2 on join_1.name = join_2.name where join_1.name is null;
++------+------+------+----------------+
+| id   | name | id   | name           |
++------+------+------+----------------+
+| NULL | NULL |    1 | Annamalai      |
+| NULL | NULL |    2 | Ulga paithiyam |
+| NULL | NULL |    3 | Chiitapa       |
++------+------+------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from join_1 right join join_2 on join_1.name = join_2.name where join_2.name is null union 
+    -> 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select * from join_1 left join join_2 on join_1.name = join_2.name where join_2.name is null union 
+    -> all select * from join_1 right join join_2 on join_1.name = join_2.name where join_1.name is null;
++------+---------+------+----------------+
+| id   | name    | id   | name           |
++------+---------+------+----------------+
+|    1 | Venkat  | NULL | NULL           |
+|    2 | Maddy   | NULL | NULL           |
+|    3 | Suguram | NULL | NULL           |
+| NULL | NULL    |    1 | Annamalai      |
+| NULL | NULL    |    2 | Ulga paithiyam |
+| NULL | NULL    |    3 | Chiitapa       |
++------+---------+------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> use College;
+Database changed
+mysql> create table crick(age tinyint check(age>=1), name varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table football(age tinyint check(age>=1), name varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into crick values(18, "Venkat"),(19, "Annamalai"),(19, "haiden"),(18, "aswath");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into football values(18, "Venkat"),(19, "Annamalai"),(20, "musaraf"),(19, "Suguram");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from crick;
++------+-----------+
+| age  | name      |
++------+-----------+
+|   18 | Venkat    |
+|   19 | Annamalai |
+|   19 | haiden    |
+|   18 | aswath    |
++------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from football;
++------+-----------+
+| age  | name      |
++------+-----------+
+|   18 | Venkat    |
+|   19 | Annamalai |
+|   20 | musaraf   |
+|   19 | Suguram   |
++------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select crick.name,football.name from crick inner join football on crick.age = football.age;
++-----------+-----------+
+| name      | name      |
++-----------+-----------+
+| aswath    | Venkat    |
+| Venkat    | Venkat    |
+| haiden    | Annamalai |
+| Annamalai | Annamalai |
+| haiden    | Suguram   |
+| Annamalai | Suguram   |
++-----------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select crick.name,football.name from crick left join football on crick.age = football.age;
++-----------+-----------+
+| name      | name      |
++-----------+-----------+
+| Venkat    | Venkat    |
+| Annamalai | Suguram   |
+| Annamalai | Annamalai |
+| haiden    | Suguram   |
+| haiden    | Annamalai |
+| aswath    | Venkat    |
++-----------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from crick left join football on crick.age = football.age;
++------+-----------+------+-----------+
+| age  | name      | age  | name      |
++------+-----------+------+-----------+
+|   18 | Venkat    |   18 | Venkat    |
+|   19 | Annamalai |   19 | Suguram   |
+|   19 | Annamalai |   19 | Annamalai |
+|   19 | haiden    |   19 | Suguram   |
+|   19 | haiden    |   19 | Annamalai |
+|   18 | aswath    |   18 | Venkat    |
++------+-----------+------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> update crick set age = "20" where name = "haiden";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update crick set age = "21" where name = "aswath";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from crick;
++------+-----------+
+| age  | name      |
++------+-----------+
+|   18 | Venkat    |
+|   19 | Annamalai |
+|   20 | haiden    |
+|   21 | aswath    |
++------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> update football set age = "22" where name = "suguram";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update football set age = "23" where name = "musaraf";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from football;
++------+-----------+
+| age  | name      |
++------+-----------+
+|   18 | Venkat    |
+|   19 | Annamalai |
+|   23 | musaraf   |
+|   22 | Suguram   |
++------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from crick left join football on crick.age = football.age;
++------+-----------+------+-----------+
+| age  | name      | age  | name      |
++------+-----------+------+-----------+
+|   18 | Venkat    |   18 | Venkat    |
+|   19 | Annamalai |   19 | Annamalai |
+|   20 | haiden    | NULL | NULL      |
+|   21 | aswath    | NULL | NULL      |
++------+-----------+------+-----------+
+4 rows in set (0.00 sec)
+
+
