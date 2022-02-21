@@ -16,18 +16,8 @@ mysql> show databases;
 6 rows in set (0.00 sec)
 
 ## mysql> use College;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
 Database changed
-mysql> desc College;
-ERROR 1146 (42S02): Table 'College.College' doesn't exist
-mysql> desc table College;
-ERROR 1146 (42S02): Table 'College.College' doesn't exist
-mysql> show database College;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database College' at line 1
-mysql> use College;
-Database changed
+## HowCREATE table 
 mysql> create table student_1(id int primary key, name varchar(20) not null, age tinyint check(age>=1), gender varchar(10) not null);
 ERROR 1050 (42S01): Table 'student_1' already exists
 mysql> create table students_1(id int primary key, name varchar(20) not null, age tinyint check(age>=1), gender varchar(10) not null);
@@ -36,7 +26,7 @@ Query OK, 0 rows affected (0.04 sec)
 mysql> desc students_1;
 
 | Field  | Type        | Null | Key | Default | Extra |
-|:--:||:--:||:--:||:--:|
+|:------:|:-----------:|:----:|:---:|:-------:|:-----:|
 | id     | int         | NO   | PRI | NULL    |       |
 | name   | varchar(20) | NO   |     | NULL    |       |
 | age    | tinyint     | YES  |     | NULL    |       |
@@ -71,9 +61,9 @@ Query OK, 6 rows affected (0.00 sec)
 Records: 6  Duplicates: 0  Warnings: 0
 
 mysql> select * from students_1;
-+----+-----------+------+--------+
+
 | id | name      | age  | gender |
-+----+-----------+------+--------+
+|:--:|:---------:|:----:|:------:|
 |  1 | Venkat    |   18 | M      |
 |  2 | Suguram   |   19 | M      |
 |  3 | Musaraf   |   20 | M      |
@@ -81,7 +71,7 @@ mysql> select * from students_1;
 |  5 | Deepak    |   19 | M      |
 |  6 | Kasi      |   19 | M      |
 |  7 | Keerthana |   19 | F      |
-+----+-----------+------+--------+
+
 7 rows in set (0.00 sec)
 
 mysql> create table Hostellers(id int primary key, name varchar(20) not null);
