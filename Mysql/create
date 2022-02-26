@@ -1,0 +1,154 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| College            |
+| Lab_works          |
+| foreignKey         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| students           |
+| sys                |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> use Lab_Works;
+ERROR 1049 (42000): Unknown database 'Lab_Works'
+mysql> use Lab_works;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc Lab_works;
+ERROR 1146 (42S02): Table 'Lab_works.Lab_works' doesn't exist
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show table Lab_works;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Lab_works' at line 1
+mysql> select * from Lab_works;
+ERROR 1146 (42S02): Table 'Lab_works.Lab_works' doesn't exist
+mysql> desc u2;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | tinyint     | NO   |     | NULL    |       |
+| gender | varchar(10) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc u_Square;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(50) | NO   |     | NULL    |                |
+| age    | tinyint     | NO   |     | NULL    |                |
+| gender | varchar(10) | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> desc u_Square1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id_1  | int         | YES  | MUL | NULL    |       |
+| H_D   | varchar(10) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> delete from u2;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc u2;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | tinyint     | NO   |     | NULL    |       |
+| gender | varchar(10) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> drop table u2;
+ERROR 3730 (HY000): Cannot drop table 'u2' referenced by a foreign key constraint 'u_Square1_ibfk_1' on table 'u_Square1'.
+mysql> drop table u_square;
+ERROR 1051 (42S02): Unknown table 'Lab_works.u_square'
+mysql> drop table u_Square;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc u_Square;
+ERROR 1146 (42S02): Table 'Lab_works.u_Square' doesn't exist
+mysql> alter table u2 add id auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increment' at line 1
+mysql> alter table u2 modify id auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increment' at line 1
+mysql> alter table u2 modify id int primary key auto_increment;
+ERROR 1068 (42000): Multiple primary key defined
+mysql> alter table u2 modify id int auto_increment;
+ERROR 1833 (HY000): Cannot change column 'id': used in a foreign key constraint 'u_Square1_ibfk_1' of table 'Lab_works.u_Square1'
+mysql> ALTER TABLE u2 MODIFY id int UNSIGNED AUTO_INCREMENT;
+ERROR 3780 (HY000): Referencing column 'id_1' and referenced column 'id' in foreign key constraint 'u_Square1_ibfk_1' are incompatible.
+mysql> drop table u_Square1;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table u2;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table u_Square1(id int primary key auto_increment, name varchar(20) not null, age tinyint check(age>=1) not null, gender varchar(10) not null);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table u_Square2(id int, foreign key(id) references u_Square1(id), H_D varchar(5) not null, city varchar(20) not null);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into u_Square1(1, "Annam Raj", 19, "M"),(2, "Deepak", 19, "M"),(3, "Kasi", 19, "M"),(4, "Keerthana", 20, "F"),(5, "Meenu", 19, "F"),(6, "Musaraf", 20, "M"),(7, "Suguram", 19, "M"),(8, "Vaishnavi",
+18, "F"),(9, "Venkat", 18, "M");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1, "Annam Raj", 19, "M"),(2, "Deepak", 19, "M"),(3, "Kasi", 19, "M"),(4, "Keerth' at line 1
+mysql> insert into u_Square1(1, "Annam Raj", 19, "M");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1, "Annam Raj", 19, "M")' at line 1
+mysql> insert into u_Square1 values(1, "Annam Raj", 19, "M"),(2, "Deepak", 19, "M"),(3, "Kasi", 19, "M"),(4, "Keerthana", 20, "F"),(5, "Meenu", 19, "F"),(6, "Musaraf", 20, "M"),(7, "Suguram", 19, "M"),(8, "Vaish
+navi", 18, "F"),(9, "Venkat", 18, "M");
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> select * from u_Square1;
++----+-----------+-----+--------+
+| id | name      | age | gender |
++----+-----------+-----+--------+
+|  1 | Annam Raj |  19 | M      |
+|  2 | Deepak    |  19 | M      |
+|  3 | Kasi      |  19 | M      |
+|  4 | Keerthana |  20 | F      |
+|  5 | Meenu     |  19 | F      |
+|  6 | Musaraf   |  20 | M      |
+|  7 | Suguram   |  19 | M      |
+|  8 | Vaishnavi |  18 | F      |
+|  9 | Venkat    |  18 | M      |
++----+-----------+-----+--------+
+9 rows in set (0.00 sec)
+
+mysql> insert into u_Square2 values("H", "Nellore"),("D", "Chennai"),("H", "Thoothukudi"),("H", "Coimbatore"),("D", "Trichy"),("D", "Chennai"),("D", "Chennai"),("H", "Erode"),("H", "Tiruneveli");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into u_Square2 values(1, "H", "Nellore"),(2, "D", "Chennai"),(3, "H", "Thoothukudi"),(4, "H", "Coimbatore"),(5, "D", "Trichy"),(6, "D", "Chennai"),(7, "D", "Chennai"),(8, "H", "Erode"),(9, "H", "Ti
+runeveli");
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> select * from u_Square2;
++------+-----+-------------+
+| id   | H_D | city        |
++------+-----+-------------+
+|    1 | H   | Nellore     |
+|    2 | D   | Chennai     |
+|    3 | H   | Thoothukudi |
+|    4 | H   | Coimbatore  |
+|    5 | D   | Trichy      |
+|    6 | D   | Chennai     |
+|    7 | D   | Chennai     |
+|    8 | H   | Erode       |
+|    9 | H   | Tiruneveli  |
++------+-----+-------------+
+9 rows in set (0.00 sec)
