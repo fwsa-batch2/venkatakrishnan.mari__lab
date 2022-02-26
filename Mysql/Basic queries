@@ -152,3 +152,4 @@ mysql> select * from u_Square2;
 |    9 | H   | Tiruneveli  |
 +------+-----+-------------+
 9 rows in set (0.00 sec)
+
