@@ -1,0 +1,165 @@
+mysql> show databases;
+ERROR 4031 (HY000): The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.
+No connection. Trying to reconnect...
+Connection id:    13
+Current database: Lab_works
+
++--------------------+
+| Database           |
++--------------------+
+| College            |
+| Lab_works          |
+| foreignKey         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| students           |
+| sys                |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> create database constraints;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table const(id int primary key, name varchar(20) not null, age tinyint check(age>=1), dept varchar(20) default "FRSH", Unique(id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table const_1(id int, foriegn key(id) references const(id), score int(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key(id) references const(id), score int(10))' at line 1
+mysql> create table const_1(id int, foreign key(id) references const(id), score int(10));
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> insert into const values(1, "Venkat", 18,),(2, "Suguram", 19);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '),(2, "Suguram", 19)' at line 1
+mysql> insert into const values(1, "Venkat", 18),(2, "Suguram", 19);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| College            |
+| Lab_works          |
+| constraints        |
+| foreignKey         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| students           |
+| sys                |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> drop database constraints;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| College            |
+| Lab_works          |
+| foreignKey         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| students           |
+| sys                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> create database constraints;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use constraints;
+Database changed
+mysql> create table const(Emp_id int unique not null, id int primary key, name varchar(20) not null, age tinyint check(age>=1), dept varchar(20) default "FRSH");
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table const_1(id int, foreign key(id) references const(id), score int(10));
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> insert into const values(A001, "Venkat", 18); 
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into const values(A001, "Venkat", 18, "FRSH");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into const values(A001, 1, "Venkat", 18, "FRSH");
+ERROR 1054 (42S22): Unknown column 'A001' in 'field list'
+mysql> insert into const values(0001, 1, "Venkat", 18, "FRSH");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from const;
++--------+----+--------+------+------+
+| Emp_id | id | name   | age  | dept |
++--------+----+--------+------+------+
+|      1 |  1 | Venkat |   18 | FRSH |
++--------+----+--------+------+------+
+1 row in set (0.00 sec)
+
+mysql> truncate const;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`constraints`.`const_1`, CONSTRAINT `const_1_ibfk_1`)
+mysql> truncate table const;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`constraints`.`const_1`, CONSTRAINT `const_1_ibfk_1`)
+mysql> update const set Emp_id = 100 where id = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from const;
++--------+----+--------+------+------+
+| Emp_id | id | name   | age  | dept |
++--------+----+--------+------+------+
+|    100 |  1 | Venkat |   18 | FRSH |
++--------+----+--------+------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into const_1 values(20);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> desc const_1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| id    | int  | YES  | MUL | NULL    |       |
+| score | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into const_1 values(20);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into const_1 values(1, 20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from const_1;
++------+-------+
+| id   | score |
++------+-------+
+|    1 |    20 |
++------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into const_1 values(10);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into const values(101, 2, "Keerthana", 20, "FRSH");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into const_1 values(3, 10);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`constraints`.`const_1`, CONSTRAINT `const_1_ibfk_1` FOREIGN KEY (`id`) REFERENCES `const` (`id`))
+mysql> insert into const_1 values(2, 10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from const_1;
++------+-------+
+| id   | score |
++------+-------+
+|    1 |    20 |
+|    2 |    10 |
++------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from const;
++--------+----+-----------+------+------+
+| Emp_id | id | name      | age  | dept |
++--------+----+-----------+------+------+
+|    100 |  1 | Venkat    |   18 | FRSH |
+|    101 |  2 | Keerthana |   20 | FRSH |
++--------+----+-----------+------+------+
+2 rows in set (0.00 sec)
+
