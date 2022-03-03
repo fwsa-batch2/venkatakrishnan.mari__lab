@@ -1,0 +1,401 @@
+mysql> use school_management;
+ERROR 1049 (42000): Unknown database 'school_management'
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| College            |
+| Lab_works          |
+| constraints        |
+| foreignKey         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| school_mangagement |
+| students           |
+| sys                |
++--------------------+
+10 rows in set (0.01 sec)
+
+mysql> use school_mangagement;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from students;
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+| id | name            | email               | mobile_no  | password    | gender | dob        | created_date        |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak      | M      | 2002-02-13 | 2022-03-02 12:35:18 |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_class;
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+|  1 |          1 |     7 | ACTIVE |
+|  2 |          2 |     7 | ACTIVE |
+|  3 |          3 |     7 | ACTIVE |
+|  4 |          4 |     7 | ACTIVE |
++----+------------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select email,password from students;
++---------------------+-------------+
+| email               | password    |
++---------------------+-------------+
+| Venkat434@gmail.com | Venkat434   |
+| suguram@gmail.com   | Sugu142     |
+| musaraf@gmail.com   | Musaraf1124 |
+| deepak@gmail.com    | Deepak      |
++---------------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> update students set password = "Deepak223" where id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+| id | name            | email               | mobile_no  | password    | gender | dob        | created_date        |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_class where class=5;
+Empty set (0.00 sec)
+
+mysql> select * from student_class where class=7;
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+|  1 |          1 |     7 | ACTIVE |
+|  2 |          2 |     7 | ACTIVE |
+|  3 |          3 |     7 | ACTIVE |
+|  4 |          4 |     7 | ACTIVE |
++----+------------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> insert into students values(5, "Kasi", "Kasi@gmail.com", 8682072886, "kasi321", "M", '2003-11-21', now());
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student_class values(5, 5, 6,"Active");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student_class where class=6;
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+|  5 |          5 |     6 | Active |
++----+------------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from student_class;
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+|  1 |          1 |     7 | ACTIVE |
+|  2 |          2 |     7 | ACTIVE |
+|  3 |          3 |     7 | ACTIVE |
+|  4 |          4 |     7 | ACTIVE |
+|  5 |          5 |     6 | Active |
++----+------------+-------+--------+
+5 rows in set (0.01 sec)
+
+mysql> update student_class set class = 7 where id=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student_class;
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+|  1 |          1 |     7 | ACTIVE |
+|  2 |          2 |     7 | ACTIVE |
+|  3 |          3 |     7 | ACTIVE |
+|  4 |          4 |     7 | ACTIVE |
+|  5 |          5 |     7 | Active |
++----+------------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> delete from student_class where id = 5;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student_class;
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+|  1 |          1 |     7 | ACTIVE |
+|  2 |          2 |     7 | ACTIVE |
+|  3 |          3 |     7 | ACTIVE |
+|  4 |          4 |     7 | ACTIVE |
++----+------------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from students where dob = null;
+Empty set (0.00 sec)
+
+mysql> select count(*),class from student_class where status = "ACTIVE" group by class;
++----------+-------+
+| count(*) | class |
++----------+-------+
+|        4 |     7 |
++----------+-------+
+1 row in set (0.01 sec)
+
+mysql> update student_class set class=6 where id=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_class set class=5 where id=4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student_class;
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+|  1 |          1 |     7 | ACTIVE |
+|  2 |          2 |     7 | ACTIVE |
+|  3 |          3 |     6 | ACTIVE |
+|  4 |          4 |     5 | ACTIVE |
++----+------------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select count(*),class from student_class where status = "ACTIVE" group by class;
++----------+-------+
+| count(*) | class |
++----------+-------+
+|        2 |     7 |
+|        1 |     6 |
+|        1 |     5 |
++----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student_class where status = "ACTIVE";
++----+------------+-------+--------+
+| id | student_id | class | status |
++----+------------+-------+--------+
+|  1 |          1 |     7 | ACTIVE |
+|  2 |          2 |     7 | ACTIVE |
+|  3 |          3 |     6 | ACTIVE |
+|  4 |          4 |     5 | ACTIVE |
++----+------------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select count(*) from student_class where status = "ACTIVE";
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*),class from student_class where status = "ACTIVE" group by class having count(*) <5;
++----------+-------+
+| count(*) | class |
++----------+-------+
+|        2 |     7 |
+|        1 |     6 |
+|        1 |     5 |
++----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from students inner join student_class;
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+----+------------+-------+--------+
+| id | name            | email               | mobile_no  | password    | gender | dob        | created_date        | id | student_id | class | status |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+----+------------+-------+--------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |  4 |          4 |     5 | ACTIVE |
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |  3 |          3 |     6 | ACTIVE |
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |  2 |          2 |     7 | ACTIVE |
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |  1 |          1 |     7 | ACTIVE |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |  4 |          4 |     5 | ACTIVE |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |  3 |          3 |     6 | ACTIVE |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |  2 |          2 |     7 | ACTIVE |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |  1 |          1 |     7 | ACTIVE |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |  4 |          4 |     5 | ACTIVE |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |  3 |          3 |     6 | ACTIVE |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |  2 |          2 |     7 | ACTIVE |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |  1 |          1 |     7 | ACTIVE |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |  4 |          4 |     5 | ACTIVE |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |  3 |          3 |     6 | ACTIVE |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |  2 |          2 |     7 | ACTIVE |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |  1 |          1 |     7 | ACTIVE |
+|  5 | Kasi            | Kasi@gmail.com      | 8682072886 | kasi321     | M      | 2003-11-21 | 2022-03-02 14:56:55 |  4 |          4 |     5 | ACTIVE |
+|  5 | Kasi            | Kasi@gmail.com      | 8682072886 | kasi321     | M      | 2003-11-21 | 2022-03-02 14:56:55 |  3 |          3 |     6 | ACTIVE |
+|  5 | Kasi            | Kasi@gmail.com      | 8682072886 | kasi321     | M      | 2003-11-21 | 2022-03-02 14:56:55 |  2 |          2 |     7 | ACTIVE |
+|  5 | Kasi            | Kasi@gmail.com      | 8682072886 | kasi321     | M      | 2003-11-21 | 2022-03-02 14:56:55 |  1 |          1 |     7 | ACTIVE |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+----+------------+-------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from students a inner join student_class b on a.id = b.student_class;
+ERROR 1054 (42S22): Unknown column 'b.student_class' in 'on clause'
+mysql> select * from students a inner join student_class b on a.id = b.student_id;
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+----+------------+-------+--------+
+| id | name            | email               | mobile_no  | password    | gender | dob        | created_date        | id | student_id | class | status |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+----+------------+-------+--------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |  1 |          1 |     7 | ACTIVE |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |  2 |          2 |     7 | ACTIVE |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |  3 |          3 |     6 | ACTIVE |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |  4 |          4 |     5 | ACTIVE |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+----+------------+-------+--------+
+4 rows in set (0.01 sec)
+
+mysql> select * from students a inner join student_class b on a.id = b.student_id where class=5;
++----+--------+------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+| id | name   | email            | mobile_no  | password  | gender | dob        | created_date        | id | student_id | class | status |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+|  4 | Deepak | deepak@gmail.com | 8925003062 | Deepak223 | M      | 2002-02-13 | 2022-03-02 12:35:18 |  4 |          4 |     5 | ACTIVE |
++----+--------+------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from students join student_class on students.id = student_class where email = "Venkat434@gmail.com";
+ERROR 1054 (42S22): Unknown column 'student_class' in 'on clause'
+mysql> select * from students join student_class on students.id = student_class.student_id where email = "Venkat434@gmail.com";
++----+-----------------+---------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+| id | name            | email               | mobile_no  | password  | gender | dob        | created_date        | id | student_id | class | status |
++----+-----------------+---------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434 | M      | 2004-03-04 | 2022-03-02 12:22:39 |  1 |          1 |     7 | ACTIVE |
++----+-----------------+---------------------+------------+-----------+--------+------------+---------------------+----+------------+-------+--------+
+1 row in set (0.01 sec)
+
+mysql> select student_class.class from students join student_class on students.id = student_class.student_id where email = "Venkat434@gmail.com";
++-------+
+| class |
++-------+
+|     7 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> insert into students values(5, "Meenu", "Meenu@gmail.com", "9234587345", "meenu394", "F", "2003-09-24", now()),(6, "Keerthana", "Keerthana@gmail.com", 9786345210, "keerthan184", "F", "2001-08-14", now()); 
+ERROR 1062 (23000): Duplicate entry '5' for key 'students.PRIMARY'
+mysql> select * from students;
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+| id | name            | email               | mobile_no  | password    | gender | dob        | created_date        |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |
+|  5 | Kasi            | Kasi@gmail.com      | 8682072886 | kasi321     | M      | 2003-11-21 | 2022-03-02 14:56:55 |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into students values(6, "Meenu", "Meenu@gmail.com", "9234587345", "meenu394", "F", "2003-09-24", now()),(7, "Keerthana", "Keerthana@gmail.com", 9786345210, "keerthan184", "F", "2001-08-14", now());
+
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+| id | name            | email               | mobile_no  | password    | gender | dob        | created_date        |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |
+|  5 | Kasi            | Kasi@gmail.com      | 8682072886 | kasi321     | M      | 2003-11-21 | 2022-03-02 14:56:55 |
+|  6 | Meenu           | Meenu@gmail.com     | 9234587345 | meenu394    | F      | 2003-09-24 | 2022-03-03 12:24:05 |
+|  7 | Keerthana       | Keerthana@gmail.com | 9786345210 | keerthan184 | F      | 2001-08-14 | 2022-03-03 12:24:05 |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from students join student_class on students.id = student_class.student_id;
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+----+------------+-------+--------+
+| id | name            | email               | mobile_no  | password    | gender | dob        | created_date        | id | student_id | class | status |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+----+------------+-------+--------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |  1 |          1 |     7 | ACTIVE |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |  2 |          2 |     7 | ACTIVE |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |  3 |          3 |     6 | ACTIVE |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |  4 |          4 |     5 | ACTIVE |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+----+------------+-------+--------+
+4 rows in set (0.01 sec)
+
+mysql> select * from students left join student_class on students.id = student_class.student_id;
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+------+------------+-------+--------+
+| id | name            | email               | mobile_no  | password    | gender | dob        | created_date        | id   | student_id | class | status |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+------+------------+-------+--------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |    1 |          1 |     7 | ACTIVE |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |    2 |          2 |     7 | ACTIVE |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |    3 |          3 |     6 | ACTIVE |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |    4 |          4 |     5 | ACTIVE |
+|  5 | Kasi            | Kasi@gmail.com      | 8682072886 | kasi321     | M      | 2003-11-21 | 2022-03-02 14:56:55 | NULL |       NULL |  NULL | NULL   |
+|  6 | Meenu           | Meenu@gmail.com     | 9234587345 | meenu394    | F      | 2003-09-24 | 2022-03-03 12:24:05 | NULL |       NULL |  NULL | NULL   |
+|  7 | Keerthana       | Keerthana@gmail.com | 9786345210 | keerthan184 | F      | 2001-08-14 | 2022-03-03 12:24:05 | NULL |       NULL |  NULL | NULL   |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+------+------------+-------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select students.name, student_class.class from students left join student_class on students.id = student_class.student_id;
++-----------------+-------+
+| name            | class |
++-----------------+-------+
+| Venkatakrishnan |     7 |
+| Suguram         |     7 |
+| Musaraf         |     6 |
+| Deepak          |     5 |
+| Kasi            |  NULL |
+| Meenu           |  NULL |
+| Keerthana       |  NULL |
++-----------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from students left join student_class on students.id = student_class.student_id where class = null;
+Empty set (0.00 sec)
+
+mysql> select students.name, student_class.class from students left join student_class on students.id = student_class.student_id where class = null;
+Empty set (0.00 sec)
+
+mysql> select * from students left join student_class on students.id = student_class.student_id where class = 'null';
+Empty set, 1 warning (0.01 sec)
+
+mysql> select * from students join student_class on students.id = student_class.student_id where class = null;
+Empty set (0.01 sec)
+
+mysql> select * from students left join student_class on students.id = student_class.student_id union all select * from students join student_class on students.id = student_class.student_id where(student_class.class is null);
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+------+------------+-------+--------+
+| id | name            | email               | mobile_no  | password    | gender | dob        | created_date        | id   | student_id | class | status |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+------+------------+-------+--------+
+|  1 | Venkatakrishnan | Venkat434@gmail.com | 9361041092 | Venkat434   | M      | 2004-03-04 | 2022-03-02 12:22:39 |    1 |          1 |     7 | ACTIVE |
+|  2 | Suguram         | suguram@gmail.com   | 9677294559 | Sugu142     | M      | 2002-04-10 | 2022-03-02 12:31:32 |    2 |          2 |     7 | ACTIVE |
+|  3 | Musaraf         | musaraf@gmail.com   | 9080641773 | Musaraf1124 | M      | 2001-12-04 | 2022-03-02 12:32:58 |    3 |          3 |     6 | ACTIVE |
+|  4 | Deepak          | deepak@gmail.com    | 8925003062 | Deepak223   | M      | 2002-02-13 | 2022-03-02 12:35:18 |    4 |          4 |     5 | ACTIVE |
+|  5 | Kasi            | Kasi@gmail.com      | 8682072886 | kasi321     | M      | 2003-11-21 | 2022-03-02 14:56:55 | NULL |       NULL |  NULL | NULL   |
+|  6 | Meenu           | Meenu@gmail.com     | 9234587345 | meenu394    | F      | 2003-09-24 | 2022-03-03 12:24:05 | NULL |       NULL |  NULL | NULL   |
+|  7 | Keerthana       | Keerthana@gmail.com | 9786345210 | keerthan184 | F      | 2001-08-14 | 2022-03-03 12:24:05 | NULL |       NULL |  NULL | NULL   |
++----+-----------------+---------------------+------------+-------------+--------+------------+---------------------+------+------------+-------+--------+
+7 rows in set (0.01 sec)
+
+mysql> select * from students join student_class on students.id = student_class.student_id where student_class.class is null;
+Empty set (0.00 sec)
+
+mysql> select * from students left join student_class on students.id = student_class.student_id where student_class.class is null;
++----+-----------+---------------------+------------+-------------+--------+------------+---------------------+------+------------+-------+--------+
+| id | name      | email               | mobile_no  | password    | gender | dob        | created_date        | id   | student_id | class | status |
++----+-----------+---------------------+------------+-------------+--------+------------+---------------------+------+------------+-------+--------+
+|  5 | Kasi      | Kasi@gmail.com      | 8682072886 | kasi321     | M      | 2003-11-21 | 2022-03-02 14:56:55 | NULL |       NULL |  NULL | NULL   |
+|  6 | Meenu     | Meenu@gmail.com     | 9234587345 | meenu394    | F      | 2003-09-24 | 2022-03-03 12:24:05 | NULL |       NULL |  NULL | NULL   |
+|  7 | Keerthana | Keerthana@gmail.com | 9786345210 | keerthan184 | F      | 2001-08-14 | 2022-03-03 12:24:05 | NULL |       NULL |  NULL | NULL   |
++----+-----------+---------------------+------------+-------------+--------+------------+---------------------+------+------------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select name from students left join student_class on students.id = student_class.student_id where student_class.class is null;
++-----------+
+| name      |
++-----------+
+| Kasi      |
+| Meenu     |
+| Keerthana |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> 
+
+
