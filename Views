@@ -1,0 +1,77 @@
+mysql> select * from u_Square1;
++----+-----------+-----+--------+
+| id | name      | age | gender |
++----+-----------+-----+--------+
+|  1 | Annam Raj |  19 | M      |
+|  2 | Deepak    |  19 | M      |
+|  3 | Kasi      |  19 | M      |
+|  4 | Keerthana |  20 | F      |
+|  5 | Meenu     |  19 | F      |
+|  6 | Musaraf   |  20 | M      |
+|  7 | Suguram   |  19 | M      |
+|  8 | Vaishnavi |  18 | F      |
+|  9 | Venkat    |  18 | M      |
++----+-----------+-----+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from u_Square2;
++------+-----+-----+-------------+
+| id   | H_D | age | city        |
++------+-----+-----+-------------+
+|    1 | H   |  19 | Nellore     |
+|    2 | D   |  19 | Chennai     |
+|    3 | H   |  19 | Thoothukudi |
+|    4 | H   |  20 | Coimbatore  |
+|    5 | D   |  19 | Trichy      |
+|    6 | D   |  20 | Chennai     |
+|    7 | D   |  19 | Chennai     |
+|    8 | H   |  18 | Erode       |
+|    9 | H   |  18 | Tiruneveli  |
++------+-----+-----+-------------+
+9 rows in set (0.00 sec)
+
+mysql> create view squad_meb as select id, name, age from u_Square1 where name like "%or%";
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from squad_meb;
+Empty set (0.00 sec)
+
+mysql> drop view squad_meb;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create view squad_meb as select id, name, age from u_Square1 where name like "k%";
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> drop view squad_meb;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create view squad_meb as select id, name, age from u_Square1 where name like "k%";
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from squad_meb;
++----+-----------+-----+
+| id | name      | age |
++----+-----------+-----+
+|  3 | Kasi      |  19 |
+|  4 | Keerthana |  20 |
++----+-----------+-----+
+2 rows in set (0.00 sec)
+
+mysql> create view squad_meb1 as select id, name, gender from u_Square1;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from squad_meb1;
++----+-----------+--------+
+| id | name      | gender |
++----+-----------+--------+
+|  1 | Annam Raj | M      |
+|  2 | Deepak    | M      |
+|  3 | Kasi      | M      |
+|  4 | Keerthana | F      |
+|  5 | Meenu     | F      |
+|  6 | Musaraf   | M      |
+|  7 | Suguram   | M      |
+|  8 | Vaishnavi | F      |
+|  9 | Venkat    | M      |
++----+-----------+--------+
+

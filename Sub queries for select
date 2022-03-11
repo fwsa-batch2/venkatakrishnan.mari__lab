@@ -1,0 +1,59 @@
+mysql> select * from employees;
++--------+----------+---------+------------+--------+
+| emp_id | emp_name | emp_age | city       | income |
++--------+----------+---------+------------+--------+
+|      1 | Venkat   |      19 | Tiruneveli | 200000 |
++--------+----------+---------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into employees values(2, "Suguram", 20, "Chennai", 220000),(3, "Mari", 20, "Vk puram", 250000),(4, "Krishna", 21, "300000"),(5, "Venky", 22, "Nagercoil", 350000);
+ERROR 1136 (21S01): Column count doesn't match value count at row 3
+mysql> insert into employees values(2, "Suguram", 20, "Chennai", 220000),(3, "Mari", 20, "Vk puram", 250000),(4, "Krishna", 21, "Thalaiyuthu", 300000),(5, "Venky", 22, "Nagercoil", 350000);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees;
++--------+----------+---------+-------------+--------+
+| emp_id | emp_name | emp_age | city        | income |
++--------+----------+---------+-------------+--------+
+|      1 | Venkat   |      19 | Tiruneveli  | 200000 |
+|      2 | Suguram  |      20 | Chennai     | 220000 |
+|      3 | Mari     |      20 | Vk puram    | 250000 |
+|      4 | Krishna  |      21 | Thalaiyuthu | 300000 |
+|      5 | Venky    |      22 | Nagercoil   | 350000 |
++--------+----------+---------+-------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select emp_name,income,city from employees where emp_id in(select emp_id from employees);
++----------+--------+-------------+
+| emp_name | income | city        |
++----------+--------+-------------+
+| Venkat   | 200000 | Tiruneveli  |
+| Suguram  | 220000 | Chennai     |
+| Mari     | 250000 | Vk puram    |
+| Krishna  | 300000 | Thalaiyuthu |
+| Venky    | 350000 | Nagercoil   |
++----------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM employees   
+    ->    WHERE emp_id IN (SELECT emp_id FROM employees   
+    ->          WHERE income < 350000);  
++--------+----------+---------+-------------+--------+
+| emp_id | emp_name | emp_age | city        | income |
++--------+----------+---------+-------------+--------+
+|      1 | Venkat   |      19 | Tiruneveli  | 200000 |
+|      2 | Suguram  |      20 | Chennai     | 220000 |
+|      3 | Mari     |      20 | Vk puram    | 250000 |
+|      4 | Krishna  |      21 | Thalaiyuthu | 300000 |
++--------+----------+---------+-------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT emp_name, city, income FROM employees   
+    ->    WHERE income = (SELECT MAX(income) FROM employees);  
++----------+-----------+--------+
+| emp_name | city      | income |
++----------+-----------+--------+
+| Venky    | Nagercoil | 350000 |
++----------+-----------+--------+
+

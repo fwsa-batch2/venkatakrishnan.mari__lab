@@ -1,0 +1,80 @@
+mysql> select * from u_Square1;
++----+-----------+-----+--------+
+| id | name      | age | gender |
++----+-----------+-----+--------+
+|  1 | Annam Raj |  19 | M      |
+|  2 | Deepak    |  19 | M      |
+|  3 | Kasi      |  19 | M      |
+|  4 | Keerthana |  20 | F      |
+|  5 | Meenu     |  19 | F      |
+|  6 | Musaraf   |  20 | M      |
+|  7 | Suguram   |  19 | M      |
+|  8 | Vaishnavi |  18 | F      |
+|  9 | Venkat    |  18 | M      |
++----+-----------+-----+--------+
+9 rows in set (0.01 sec)
+
+mysql> select * from u_Square1 order by age;
++----+-----------+-----+--------+
+| id | name      | age | gender |
++----+-----------+-----+--------+
+|  8 | Vaishnavi |  18 | F      |
+|  9 | Venkat    |  18 | M      |
+|  1 | Annam Raj |  19 | M      |
+|  2 | Deepak    |  19 | M      |
+|  3 | Kasi      |  19 | M      |
+|  5 | Meenu     |  19 | F      |
+|  7 | Suguram   |  19 | M      |
+|  4 | Keerthana |  20 | F      |
+|  6 | Musaraf   |  20 | M      |
++----+-----------+-----+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from u_Square1 order by age desc;
++----+-----------+-----+--------+
+| id | name      | age | gender |
++----+-----------+-----+--------+
+|  4 | Keerthana |  20 | F      |
+|  6 | Musaraf   |  20 | M      |
+|  1 | Annam Raj |  19 | M      |
+|  2 | Deepak    |  19 | M      |
+|  3 | Kasi      |  19 | M      |
+|  5 | Meenu     |  19 | F      |
+|  7 | Suguram   |  19 | M      |
+|  8 | Vaishnavi |  18 | F      |
+|  9 | Venkat    |  18 | M      |
++----+-----------+-----+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from u_Square1 order by name;
++----+-----------+-----+--------+
+| id | name      | age | gender |
++----+-----------+-----+--------+
+|  1 | Annam Raj |  19 | M      |
+|  2 | Deepak    |  19 | M      |
+|  3 | Kasi      |  19 | M      |
+|  4 | Keerthana |  20 | F      |
+|  5 | Meenu     |  19 | F      |
+|  6 | Musaraf   |  20 | M      |
+|  7 | Suguram   |  19 | M      |
+|  8 | Vaishnavi |  18 | F      |
+|  9 | Venkat    |  18 | M      |
++----+-----------+-----+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from u_Square1 order by name desc;
++----+-----------+-----+--------+
+| id | name      | age | gender |
++----+-----------+-----+--------+
+|  9 | Venkat    |  18 | M      |
+|  8 | Vaishnavi |  18 | F      |
+|  7 | Suguram   |  19 | M      |
+|  6 | Musaraf   |  20 | M      |
+|  5 | Meenu     |  19 | F      |
+|  4 | Keerthana |  20 | F      |
+|  3 | Kasi      |  19 | M      |
+|  2 | Deepak    |  19 | M      |
+|  1 | Annam Raj |  19 | M      |
++----+-----------+-----+--------+
+9 rows in set (0.00 sec)
+
