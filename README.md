@@ -1,4 +1,4 @@
-## Welcom to kfc
+## Welcome to kfc
 ### Database
 
 
