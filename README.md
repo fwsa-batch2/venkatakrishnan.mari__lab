@@ -246,4 +246,6 @@
        select * from `users`;
        select * from `Menu`;
        
+ ### ER diagram of welcome_to_kfc
+ 
 ![Drawing (3)](https://user-images.githubusercontent.com/93571040/159661524-83566c76-765f-4391-b725-e1d8d756abe3.png)
