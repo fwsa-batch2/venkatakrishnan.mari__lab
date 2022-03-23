@@ -1,7 +1,21 @@
-## Welcome to kfc
+## Welcome to kfc DBMS
 
-### Database
+### Show databases
 
+
+| Database           |
+|:------------------:|
+| College            |
+| Lab_works          |
+| constraints        |
+| foreignKey         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| school_mangagement |
+| students           |
+| sys                |
+| welcome_to_kfc     |
 
 ### Use query to use database
 
@@ -9,15 +23,14 @@
       
 ### show tables  
       
-      show tables; 
-      
-### drop tables
-
-      drop table `orders`;
-      drop table `price`;  
-      drop table `Menu`;
-      drop table `Category`;
-      drop table `users`;
+| Tables_in_welcome_to_kfc |
+|:------------------------:|
+| Category                 |
+| Menu                     |
+| orders                   |
+| payments                 |
+| price                    |
+| users                    |
 
 ### Table: User
 
@@ -32,12 +45,23 @@
     `Modified_date` timestamp not null default current_timestamp on update current_timestamp,
     
     unique(email));
-    desc `users`;
     
+### desc `users`;
+    
+| Field         | Type         | Null | Key | Default           | Extra                                         |
+|:--------------:|-------------:|-----:|----:|------------------:|----------------------------------------------:|
+| id            | int          | NO   | PRI | NULL              | auto_increment                                |
+| first_name    | varchar(50)  | NO   |     | NULL              |                                               |
+| last_name     | varchar(50)  | NO   |     | NULL              |                                               |
+| email         | varchar(100) | NO   | UNI | NULL              |                                               |
+| password      | varchar(50)  | NO   |     | NULL              |                                               |
+| Active        | tinyint(1)   | NO   |     | 1                 |                                               |
+| Created_date  | timestamp    | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| Modified_date | timestamp    | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
 
-
+ ### Insert values into users
+ 
     insert into `users`(`first_name`,`last_name`,`email`,`password`) values("Venkata", "Krishnan", "venkatakrishnan434@gmail.com", "venkat434");
-
     select * from `users`;
 
 
@@ -49,7 +73,18 @@
       `Created_date` timestamp not null default current_timestamp,
        unique(cat_name)
        );
-       insert into `Category`(`id`,`cat_name`) values(1, "Featured"),(2, "Buckets"),(3, "Trending"),(4, "Offer"),(5, "Burger"),(6, "Rice_bowls"),(7, "Snacks"),(8, "Beverage");
+### desc Category
+
+| Field        | Type         | Null | Key | Default           | Extra             |
+|:------------:|-------------:|-----:|----:|------------------:|------------------:|
+| id           | int          | NO   | PRI | NULL              | auto_increment    |
+| cat_name     | varchar(100) | NO   | UNI | NULL              |                   |
+| Created_date | timestamp    | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+
+
+### Insert values into Category
+
+       insert into `Category`(`id`,`cat_name`) values(1, "Featured"),(2, "Buckets"),(3, "Trending"),(4, "Offer"),(5, "Burger"),(6, "Rice_bowls"),(7,     "Snacks"),(8, "Beverage");
        select * from `Category`;
 
 ### Table: Menu
@@ -62,6 +97,16 @@
        foreign key(cat_id) references `Category`(id),
        unique(`food_name`)
        );
+### desc Menu
+
+| Field        | Type         | Null | Key | Default           | Extra             |
+|:-------------|:-------------|:----:|----:|------------------:|------------------:|
+| id           | int          | NO   | PRI | NULL              | auto_increment    |
+| food_name    | varchar(100) | NO   | UNI | NULL              |                   |
+| cat_id       | int          | NO   | MUL | NULL              |                   |
+| Created_date | timestamp    | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+
+### Insert values into Menu
 
         insert into `Menu`(`id`,`food_name`,`cat_id`) values
          (1, "Side lover meal", 1),
@@ -100,6 +145,24 @@
       `Quantity`int not null,
       `ordered_date` timestamp not null default current_timestamp 
        ); 
+       
+ ### desc Orders
+ 
+
+| Field        | Type          | Null | Key | Default           | Extra             |
+|:------------:|--------------:|-----:|----:|------------------:|------------------:|
+| order_id     | int           | NO   | PRI | NULL              | auto_increment    |
+| user_id      | int           | NO   | MUL | NULL              |                   |
+| cat_id       | int           | NO   | MUL | NULL              |                   |
+| food_id      | int           | NO   | MUL | NULL              |                   |
+| food_name    | varchar(100)  | NO   |     | NULL              |                   |
+| price_id     | int           | NO   | MUL | NULL              |                   |
+| food_price   | decimal(10,2) | NO   |     | NULL              |                   |
+| Quantity     | int           | NO   |     | NULL              |                   |
+| ordered_date | timestamp     | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+
+ ### Insert values into orders
+ 
        insert into `orders`(`order_id`,`user_id`,`cat_id`,`food_id`,`food_name`,`price_id`,`food_price`,`Quantity`) values(1, 1, 1, 1, "Side lover meal", 1, 140.00, 2);
 
 
@@ -113,6 +176,19 @@
        foreign key (food_id) references `Menu`(id)
 
        );
+       
+### desc Price
+
+
+| Field        | Type          | Null | Key | Default           | Extra             |
+|:------------:|--------------:|-----:|----:|------------------:|------------------:|
+| id           | int           | NO   | PRI | NULL              | auto_increment    |
+| food_id      | int           | NO   | MUL | NULL              |                   |
+| food_price   | decimal(10,2) | NO   |     | NULL              |                   |
+| created_date | timestamp     | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+
+### Insert values into price
+
        insert into `price`(`id`,`food_id`,`food_price`) values
        (1, 1, 140.00),
        (2, 2, 110.00),
@@ -145,6 +221,19 @@
        `payment_status`enum('recieved','not recieved') not null,
        `created_date` timestamp not null default current_timestamp 
         );
+        
+### desc Payments
+
+| Field          | Type                                      | Null | Key | Default           | Extra             |
+|:--------------:|------------------------------------------:|-----:|----:|------------------:|------------------:|
+| order_id       | int                                       | NO   | MUL | NULL              |                   |
+| amount         | bigint                                    | NO   |     | NULL              |                   |
+| payment_id     | int                                       | NO   | PRI | NULL              | auto_increment    |
+| payment_type   | enum('cash on delivery','online payment') | NO   |     | NULL              |                   |
+| payment_status | enum('recieved','not recieved')           | NO   |     | NULL              |                   |
+| created_date   | timestamp                                 | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+
+### Insert values into payments
 
        insert into `payments`(`order_id`,`amount`,`payment_id`,`payment_type`,`payment_status`) values(1, 280, 1, "online payment", "recieved");
 
@@ -157,11 +246,4 @@
        select * from `users`;
        select * from `Menu`;
        
-### desc query
-
-       desc `users`;
-       desc `Category`;
-       desc `Menu`;
-       desc `orders`;
-       desc `price`;
-       desc `payments`;
+![Drawing (3)](https://user-images.githubusercontent.com/93571040/159661524-83566c76-765f-4391-b725-e1d8d756abe3.png)
