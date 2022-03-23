@@ -1,19 +1,28 @@
 ## Welcome to kfc
+
 ### Database
 
 
+### Use query to use database
 
       use `welcome_to_kfc`;
-      show tables;   
+      
+### show tables  
+      
+      show tables; 
+      
+### drop tables
+
       drop table `orders`;
       drop table `price`;  
       drop table `Menu`;
       drop table `Category`;
       drop table `users`;
 
+### Table: User
 
-    create table `users`(
-	  `id` int primary key auto_increment,
+     create table `users`(
+    `id` int primary key auto_increment,
     `first_name` varchar(50) not null,
     `last_name` varchar(50) not null,
     `email` varchar(100) not null,
@@ -23,18 +32,16 @@
     `Modified_date` timestamp not null default current_timestamp on update current_timestamp,
     
     unique(email));
+    desc `users`;
     
 
-
-    desc `users`;
-### Register query
 
     insert into `users`(`first_name`,`last_name`,`email`,`password`) values("Venkata", "Krishnan", "venkatakrishnan434@gmail.com", "venkat434");
 
     select * from `users`;
 
 
-### Food category
+### Table: Category
 
        create table `Category`(
       `id`int primary key auto_increment,
@@ -45,7 +52,8 @@
        insert into `Category`(`id`,`cat_name`) values(1, "Featured"),(2, "Buckets"),(3, "Trending"),(4, "Offer"),(5, "Burger"),(6, "Rice_bowls"),(7, "Snacks"),(8, "Beverage");
        select * from `Category`;
 
-### Food menu
+### Table: Menu
+
         create table `Menu`(
        `id`int primary key auto_increment,
        `food_name`varchar(100) not null,
@@ -79,7 +87,7 @@
          truncate table `Menu`;
 
 
- ### Order
+ ### Table: Orders
  
        create table `orders`(
       `order_id`int primary key auto_increment,
@@ -95,7 +103,7 @@
        insert into `orders`(`order_id`,`user_id`,`cat_id`,`food_id`,`food_name`,`price_id`,`food_price`,`Quantity`) values(1, 1, 1, 1, "Side lover meal", 1, 140.00, 2);
 
 
-### Price
+### Table: Price
 
         create table `price`(
        `id`int primary key auto_increment,
@@ -127,7 +135,8 @@
        ;
 
 
-### Payments
+### Table: Payments
+
        create table `payments`(
        `order_id`int not null, foreign key (order_id) references `orders`(order_id),
        `amount`bigint not null,
@@ -139,6 +148,7 @@
 
        insert into `payments`(`order_id`,`amount`,`payment_id`,`payment_type`,`payment_status`) values(1, 280, 1, "online payment", "recieved");
 
+### select query
 
        select * from `payments`;
        select * from `orders`;
@@ -146,7 +156,9 @@
        select * from `Menu`;
        select * from `users`;
        select * from `Menu`;
- 
+       
+### desc query
+
        desc `users`;
        desc `Category`;
        desc `Menu`;
