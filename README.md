@@ -249,3 +249,7 @@
  ### ER diagram of welcome_to_kfc
  
 ![Drawing (3)](https://user-images.githubusercontent.com/93571040/159661524-83566c76-765f-4391-b725-e1d8d756abe3.png)
+
+
+### EER diagram
+![kfc diagram](https://user-images.githubusercontent.com/93571040/159663780-3232e9e1-3e40-4a23-bf44-c1b0ce64ee73.png)
