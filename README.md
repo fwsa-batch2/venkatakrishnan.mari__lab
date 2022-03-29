@@ -384,8 +384,9 @@
 
     
  ### ER diagram of welcome_to_kfc
+  ![EERR](https://user-images.githubusercontent.com/93571040/160581602-39f9f274-3b13-4de5-8e78-9942bfecc438.png)
  
-![Drawing (3)](https://user-images.githubusercontent.com/93571040/159661524-83566c76-765f-4391-b725-e1d8d756abe3.png)
+
 
 
 ### EER diagram
