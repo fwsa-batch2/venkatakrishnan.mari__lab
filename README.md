@@ -69,8 +69,7 @@
 
     select * from users;
  
- 
- 
+
  
  
 | id | first_name | last_name | email                        | password    | Active | Created_date        | Modified_date       |
@@ -87,24 +86,32 @@
     
 ### desc Roles;
 
-| Field   | Type        | Null | Key | Default | Extra          |
-|:-------:|------------:|-----:|----:|--------:|---------------:|
-| id      | int         | NO   | PRI | NULL    | auto_increment |
-| user_id | int         | NO   | MUL | NULL    |                |
-| name    | varchar(50) | NO   |     | NULL    |                |
+
+| Field   | Type        | Null | Key | Default | Extra |
+|:-------:|------------:|-----:|----:|--------:|------:|
+| role_id | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | NO   |     | NULL    |       |
+
 
 ### insert values into Roles
      
-     insert into `Roles`(`user_id`, `name`) values(6, "Admin");
+     insert into `Roles`(`role_id`, `name`) values(6, "Admin");
      
 ### select query
      
      select * from `Roles`;
      
 
-| id | user_id | name  |
-|:--:|--------:|------:|
-|  1 |       6 | Admin |
+
+| role_id | name     |
+|:-------:|---------:|
+|       1 | Admin    |
+|       2 | Customer |
+|       3 | Helper   |
+|       4 | Customer |
+|       5 | Customer |
+
+
 
 
 ### Table: Category
