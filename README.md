@@ -27,6 +27,7 @@
 |:------------------------:|
 | Category                 |
 | Menu                     |
+| Roles                    |
 | orders                   |
 | payments                 |
 | price                    |
@@ -68,8 +69,7 @@
 
     select * from users;
  
- 
- 
+
  
  
 | id | first_name | last_name | email                        | password    | Active | Created_date        | Modified_date       |
@@ -79,6 +79,40 @@
 |  3 | Haiden     | Arulappan | hibyehaiden343@gmail.com     | hiby@hai343 |      1 | 2022-03-21 14:16:57 | 2022-03-21 14:16:57 |
 |  4 | Aswath     | Kaja      | aswathbai34@gmail.com        | alone@tiger |      1 | 2022-03-21 14:16:57 | 2022-03-21 14:16:57 |
 |  5 | Mohammed   | musaraf   | hasanmusaraf@gmail.com       | musaraf433  |      1 | 2022-03-21 14:16:57 | 2022-03-21 14:16:57 |
+
+### Table: Roles
+
+    create table `Roles`(`id`int primary key auto_increment, `user_id`int not null, `name`varchar(50) not null, foreign key(user_id)               references`users`(id));  
+    
+### desc Roles;
+
+
+| Field   | Type        | Null | Key | Default | Extra |
+|:-------:|------------:|-----:|----:|--------:|------:|
+| role_id | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | NO   |     | NULL    |       |
+
+
+### insert values into Roles
+     
+     insert into `Roles`(`role_id`, `name`) values(6, "Admin");
+     
+### select query
+     
+     select * from `Roles`;
+     
+
+
+| role_id | name     |
+|:-------:|---------:|
+|       1 | Admin    |
+|       2 | Customer |
+|       3 | Helper   |
+|       4 | Customer |
+|       5 | Customer |
+
+
+
 
 ### Table: Category
 
@@ -357,9 +391,11 @@
 
     
  ### ER diagram of welcome_to_kfc
+  ![EERR](https://user-images.githubusercontent.com/93571040/160581602-39f9f274-3b13-4de5-8e78-9942bfecc438.png)
  
-![Drawing (3)](https://user-images.githubusercontent.com/93571040/159661524-83566c76-765f-4391-b725-e1d8d756abe3.png)
+
 
 
 ### EER diagram
-![kfc diagram](https://user-images.githubusercontent.com/93571040/159663780-3232e9e1-3e40-4a23-bf44-c1b0ce64ee73.png)
+
+![EER 1](https://user-images.githubusercontent.com/93571040/160343046-88fef71a-154a-406b-a243-859cbd47cc50.png)
