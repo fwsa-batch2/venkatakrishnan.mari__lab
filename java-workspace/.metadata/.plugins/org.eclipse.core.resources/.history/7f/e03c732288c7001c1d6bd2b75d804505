@@ -1,0 +1,45 @@
+package com.Calculator;
+
+ interface machine{
+	void add(int a, int b);
+	void sub(int a, int b);
+	void mul(int a, int b);
+	void div(int a, int b);
+}
+class Add implements machine{
+	public void add(int a, int b) {
+		System.out.println("The addition of two number is: " + (a+b));
+	}
+}
+class Sub implements machine{
+	public void sub(int a, int b) {
+		System.out.println("The subtraction of two number is: " + (a-b));
+	}
+}
+class Mul implements machine{
+	public void sub(int a, int b) {
+		System.out.println("The multiply of two number is: " + (a*b));
+	}
+}
+class Div implements machine{
+	public void sub(int a, int b) {
+		System.out.println("The division of two number is: " + (a/b));
+	}
+}
+
+public class InterCal {
+
+	public static void main(String[] args) {
+		Add ad = new Add();
+		Sub sb = new Sub();
+		Mul ml = new Mul();
+		Div di = new Div();
+		
+		ad.add(2,5);
+		sb.sub(5,2);
+		ml.mul(10,10);
+		di.div(10,2);
+
+	}
+
+}

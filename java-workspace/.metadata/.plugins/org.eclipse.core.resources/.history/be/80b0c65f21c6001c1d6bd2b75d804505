@@ -1,0 +1,24 @@
+package com.venkat;
+
+   class mobile {
+	String name = "This is your project";
+}
+ class sk extends mobile{
+	String name = "This is my project";
+	public void fun() {
+		System.out.println(super.name);
+		
+	}
+	
+}
+public class Poly {
+       
+	public static void main(String[] args) {
+		sk s = new sk();
+		System.out.println(s.name);
+//		s.fun();
+		
+
+	}
+
+}
