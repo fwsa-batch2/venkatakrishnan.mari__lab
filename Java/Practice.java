@@ -1,12 +1,14 @@
+
 public class Practice {
+
   String name = "Ace";
   int id = 1452875429;
   Practice(){
     System.out.println("Overloading Constructor");
   }
-  Practice(String name, int id){
-      this.name = name;
-      this.id = id;
+  Practice(String Name, int ID){
+      name = Name;
+      id= ID;
   }
  
     public static void main(String[] args) {
