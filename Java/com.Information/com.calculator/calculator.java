@@ -1,4 +1,6 @@
 public class calculator {
+    public calculator() {
+    }
     static int add(int x, int y){
         return x+y;
     }
@@ -11,7 +13,7 @@ public class calculator {
 
     }
     static int div(int x, int y){
-        return x\y;
+        return x/y;
 
     }
     public static void main(String[] args) {

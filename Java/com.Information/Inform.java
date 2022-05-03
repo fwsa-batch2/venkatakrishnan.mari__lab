@@ -1,5 +1,3 @@
-package com.Information;
-
 
 public class Inform {
     
