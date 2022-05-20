@@ -3,7 +3,7 @@ public class thread extends Thread {
         thread t1 = new thread();
         System.out.println(Thread.currentThread().getName());
         System.out.println("Main function");
-        // t1.start();
+        t1.start();
         System.out.println(t1.isAlive());
     }
     public void run () {
