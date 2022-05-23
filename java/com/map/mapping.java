@@ -1,7 +1,8 @@
-import java.util.*;
+
+import java.util.HashMap;
 public class mapping {
     public static void main(String[] args) {
-       HashMap<Integer, String> al  = new HashMap();
+       HashMap<Integer, String> al  = new HashMap<>();
         al.put(1,"Venkat");
         al.put(2,"Krishnan");
         al.put(3,"Venkat");

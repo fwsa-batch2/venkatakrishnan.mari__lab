@@ -1,4 +1,4 @@
-
+import java.lang.*;
 public class GarbageCollector {
     public static void main(String args[]){  
      GarbageCollector s1= new GarbageCollector(); 
@@ -9,7 +9,5 @@ public class GarbageCollector {
      System.out.println("Garbage is Collected");
     
 }
-protected void finalize(){
-    System.out.println("Object is garbage collected");
-}
+
 }
