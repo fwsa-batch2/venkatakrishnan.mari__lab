@@ -1,6 +1,8 @@
-i = 7
-
-until i==10 do
-		puts "the value of i is #{i}"
-		i += 1
+counter = 1
+until counter > 10 do
+  puts counter
+  counter = counter + 1
+  
 end
+
+  
