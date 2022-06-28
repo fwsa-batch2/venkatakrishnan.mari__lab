@@ -1,0 +1,7 @@
+ <h1 class="hd">Todo-list</h1>
+   <% @todos.each do |todo| %>
+   <form action="/destroy" >
+     <p class="lists"> <input id="cher" type="button" name="destroy" value="DELETE">  <%= todo.id %> : <%= todo.task %>  <%= todo.date %>  </p> 
+     
+   <% end %>
+   </form>

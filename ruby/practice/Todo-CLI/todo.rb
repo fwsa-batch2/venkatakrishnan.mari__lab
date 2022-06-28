@@ -1,5 +1,7 @@
 require 'active_record'
-
+require 'C:\Users\Venkatakrishnan\Downloads\Venki_1\venkatakrishnan.mari__lab\ruby\practice\Todo-CLI\create_todos_table.rb'
+require 'C:\Users\Venkatakrishnan\Downloads\Venki_1\venkatakrishnan.mari__lab\ruby\practice\Todo-CLI\add-todo.rb'
+require 'C:\Users\Venkatakrishnan\Downloads\Venki_1\venkatakrishnan.mari__lab\ruby\practice\Todo-CLI\complete-todo.rb'
 class Todo < ActiveRecord::Base
     def to_displayable_string
         display_status = completed ? "[X]" : "[ ]"
