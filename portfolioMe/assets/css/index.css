@@ -531,3 +531,44 @@ height: 1000px;
         width: 189.9%;
     }
 }
+
+@media screen and (min-width: 720px) {
+    .navbar{
+        width: 100%;
+    }
+    .navbar-brand{
+        margin-left: 10px;
+    }
+    .logo{
+        margin-left: 30px;
+    }
+    .venky{
+        width: 70%;
+        margin-left: -150px;
+    }
+    .txt{
+        margin-left: -150px;
+        margin-top: 20px;
+    }
+    #btn{
+        margin-left: -150px;
+        margin-top: 20px;
+    }
+    .side{
+        width: 70%;
+        margin-top: 50px;
+        margin-left: -50px;
+    }
+    .thir-div{
+        width: 212%;
+    }
+    .four-div{
+        width: 212%;
+    }
+    .five-div{
+        width: 212%;
+    }
+    .six-div{
+        width: 212%;
+    }
+}
